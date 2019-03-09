@@ -1,6 +1,6 @@
 {
-  "name": "es6-boilerplate",
-  "version": "2.0.0",
+  "name": "create-es6-app",
+  "version": "1.0.0",
   "description": "Standard ES6 Boilerplate configured with babel, webpack and eslint.",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,11 @@
     "watch": "webpack -w -d",
     "build": "webpack -p",
     "lint": "node_modules/.bin/esw webpack.config.* src --color",
-    "lint:watch": "npm run lint -- --watch"
+    "lint:watch": "npm run lint -- --watch",
+    "prettier": "prettier --write src/**/*.js"
   },
   "keywords": [
-    "es6"
+    "es6", "webpack", "babel", "eslint", "prettier"
   ],
   "author": "metagrover",
   "license": "ISC",
@@ -23,8 +24,17 @@
     "eslint": "^5.10.0",
     "eslint-watch": "^4.0.2",
     "npm-run-all": "^4.0.2",
+    "prettier": "1.16.4",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["yarn prettier", "git add"]
   }
 }
